@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ReactProj/static/css/main.2872cb9f.css",
-    "main.js": "/ReactProj/static/js/main.bc3a6a13.js",
+    "main.js": "/ReactProj/static/js/main.9730adbc.js",
     "static/js/787.28cb0dcd.chunk.js": "/ReactProj/static/js/787.28cb0dcd.chunk.js",
     "static/media/us.svg": "/ReactProj/static/media/us.14abad61351d512234363fd6c0af113a.svg",
     "index.html": "/ReactProj/index.html",
@@ -9,11 +9,11 @@
     "static/media/de.svg": "/ReactProj/static/media/de.ed5be69598a5a9c32bc893f67ede7160.svg",
     "static/media/bg.svg": "/ReactProj/static/media/bg.bd884fd68fd30c1cb1c6550032d37700.svg",
     "main.2872cb9f.css.map": "/ReactProj/static/css/main.2872cb9f.css.map",
-    "main.bc3a6a13.js.map": "/ReactProj/static/js/main.bc3a6a13.js.map",
+    "main.9730adbc.js.map": "/ReactProj/static/js/main.9730adbc.js.map",
     "787.28cb0dcd.chunk.js.map": "/ReactProj/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2872cb9f.css",
-    "static/js/main.bc3a6a13.js"
+    "static/js/main.9730adbc.js"
   ]
 }
