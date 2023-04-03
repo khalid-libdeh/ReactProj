@@ -14,8 +14,8 @@ function App() {
       <Router>
         
         <Routes>
-          <Route path ='/ReactDesign' element = {<Home/>}/>
-          <Route path = '/ReactDesign/details' element = {<DetailsMain/>} />
+          <Route path ='/ReactProj' element = {<Home/>}/>
+          <Route path = '/ReactProj/details' element = {<DetailsMain/>} />
 
           </Routes>
  

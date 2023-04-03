@@ -47,7 +47,7 @@ export default class CountryCard extends React.Component{
      
      render(){
        return (
-    <LinkNoStyle to={'/ReactDesign/details'} state = {this.props.id}>
+    <LinkNoStyle to={'/ReactProj/details'} state = {this.props.id}>
     <StyledCard  draggable onDragStart={this.handleDragStart} sx={{ minWidth:330, maxWidth:300, minHeight:400}}>
     <CardMedia
       sx={{ height: this.props.imgH, width: 'auto', objectFit: "fit"}}

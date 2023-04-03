@@ -37,7 +37,7 @@ export default function DetailsMain(props){
             
             <BackButton variant="text">
             <KeyboardBackspaceIcon></KeyboardBackspaceIcon>
-              <LinkNoStyle to={'/ReactDesign/'}>Back</LinkNoStyle>
+              <LinkNoStyle to={'/ReactProj/'}>Back</LinkNoStyle>
                 </BackButton>
         </StyledEngineProvider>
         <CountryDetails countryCode = {data}></CountryDetails>
