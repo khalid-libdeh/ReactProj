@@ -7,7 +7,7 @@ import DE from './flags/de.svg'
 import JR from './flags/jr.svg'
 import styled from 'styled-components';
 import FavListCountry from './favlistICountry';
-import { useState, useEffect } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const FlagIcon = styled.img`
     height: 2rem;
@@ -19,25 +19,49 @@ const FlagIcon = styled.img`
 const ListStyle = styled.div`
     box-shadow: 0 0 5px 2px #DCDCDC;
     background: white;
+    visibility: visible;
+
+    @media screen and (max-width: 479px) {
+        display: none;
+        
+        }
 `;
 
 const StyledCancelIcon = styled(CancelIcon)`
     background-color: white;
     color: #e3e3e3;
 `;
-export default function FavouritesCountries({droppedCountry}) {
-    const [favList, setFavList] = useState([]);
-
-    const removeFavItem = (fav, countryCode)=>{
-        setFavList( (fav?.filter(country => country[0] !== countryCode)));    
-        
-    }
-
+export default function FavouritesCountries({sendDroppedToMain, currentFavourites,sendCountryToRemoveToMain }) {
+    
     const handleDragOver = (event)=>{
         event.stopPropagation();
         event.preventDefault();
-        console.log('dragging');
     }
+
+    const handleDrop = (event)=>{
+        event.preventDefault();
+        sendDroppedToMain(event.dataTransfer.getData('text/plain'))
+    }
+
+    const handleOnRemoveClick = (countryCode)=>{
+        sendCountryToRemoveToMain(countryCode)
+        
+    }
+
+    return(
+        <ListStyle onDragOver={handleDragOver} onDrop ={handleDrop.bind(this)}>
+        <List dense sx={{ width: '100%', minWidth: 300,maxWidth: 210, bgcolor: 'white' }}>
+        {currentFavourites?.map(country => (
+            <FavListCountry key ={country.cca2} id={country.cca2}  name={country.name.common} imgSrc = {country.flags.svg} onClickRemove={handleOnRemoveClick.bind(this)}/>
+            ))}
+        </List>
+        </ListStyle>
+      );
+    }
+/*
+   
+
+    
 
     const handleDrop = ()=>{
         console.log(favList)
@@ -48,14 +72,10 @@ export default function FavouritesCountries({droppedCountry}) {
 
         }, [handleDrop,removeFavItem]);
       
+*/
 
-    return(
-    <ListStyle onDragOver={handleDragOver} onDrop = {handleDrop} >
-    <List dense sx={{ width: '100%', minWidth: 300,maxWidth: 210, bgcolor: 'white' }}>
-    {favList?.map(country => (
-        <FavListCountry key ={country[0]} id={country[0]} onClickRemove={removeFavItem.bind(favList,this)} name={country[1]} imgSrc = {country[2]}/>
-        ))}
-    </List>
-    </ListStyle>
-  );
-}
+    
+
+//
+
+ 

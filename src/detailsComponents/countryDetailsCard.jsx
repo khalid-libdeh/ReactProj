@@ -19,6 +19,9 @@ const DetailsCard = styled(CardContent)`
     height: 5rem;
 `;
 
+const flexDev = styled.div`
+`
+
 export default function CountryDetailsCard(props){
 
 return (
@@ -28,10 +31,10 @@ return (
       <Typography sx={{ fontSize: 14 }} color="#fafafa;">
        
       </Typography>
-      <Typography variant="h5" component="div">
+      <Typography variant="h5" component="span">
         {props.name}
       </Typography>
-      <Typography>
+      <Typography component="span">
         <FlexDisplay>
         <div>
         <BoldFont>Native Name: </BoldFont> {props.commonName}
@@ -41,17 +44,17 @@ return (
         </div>
         </FlexDisplay>
       </Typography>
-      <Typography>
+      <Typography component="span">
       <FlexDisplay>
         <div>
         <BoldFont>Population: </BoldFont> {props.population}
         </div>
         <div>
-        <BoldFont>Currencies </BoldFont> {props.currencies}
+        <BoldFont >Currencies </BoldFont> {props.currencies}
         </div>
         </FlexDisplay>
       </Typography>
-      <Typography>
+      <Typography component="span">
       <FlexDisplay>
         <div>
         <BoldFont>Region: </BoldFont> {props.region}
@@ -61,12 +64,12 @@ return (
         </div>
         </FlexDisplay>
       </Typography>
-      <Typography>
+      <Typography component="span">
       
         <BoldFont>Sub Region: </BoldFont>{props.subRegion}
 
       </Typography>
-      <Typography>
+      <Typography >
 
       <BoldFont>Capital: </BoldFont>{props.captial}
 

@@ -5,7 +5,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 const DarkModeButton = styled(Button)`
-    color:black;
+    color:black !important;
     
 `;
 
@@ -15,12 +15,12 @@ const DarkModeWrapper = styled.section`
     align-items:center
 `;
 
-export default function DarkModeComp() {
+export default function DarkModeComp(props) {
     return (
       <DarkModeWrapper>
         <DarkModeOutlinedIcon></DarkModeOutlinedIcon>
         <StyledEngineProvider injectFirst>
-        <DarkModeButton variant="text">Dark Mode</DarkModeButton>
+        <DarkModeButton onClick={props.onChangeMode} variant="text">Dark Mode</DarkModeButton>
         </StyledEngineProvider>
       </DarkModeWrapper>
     );

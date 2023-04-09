@@ -9,8 +9,10 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, componentWillMount } from 'react';
 import CountryDetailsCard from './countryDetailsCard';
+import { fetchCountries } from '../methods/api';
+
 
 const FlagImage = styled.img`
     height: 25rem;
@@ -46,71 +48,50 @@ const BoldFont = styled.span`
 
 
 
-export default function CountryDetails(props){
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState({});
+export default function CountryDetails(){
+  const [country, setCountry] = useState();
 
-  let res;
-  const fetchCountries = async () => {
-            
-    await fetch('https://restcountries.com/v3.1/all')
-      .then(response => {
-
-        res = response.status;
-        return response.json()
-   
-      })
-      .then(data => {
-        if(res !== 200)
-          setCountries([])
-        else
-          setCountries(data)
-        
-      })
-  };
-  function findCountryByCode(array, cca2) {
-    return array.find((element) => {
-      return element.cca2 === cca2;
-    })
-  }
+  const queryParams = new URLSearchParams(window.location.search)
+  const countryName = queryParams.get("countryName")
 
   useEffect(() => {
-    fetchCountries();
-    setCountry(findCountryByCode(countries,props.countryCode))
-    console.log(country)
-    }, []);
-
-    //commonName= {country[0].name.common}
-   // topLevelDomain = {country[0].cca2}
-   // population = {country[0].population}
-   // currencies = {country[0].currencies[0]}
-   // region = {country[0].region}
-   // languages = {country[0].languages}
-   // subRegion = {country[0].subRegion}
-   // captial = {country[0].capital}
-
-
-    return(
-          <DetailsWrapper>
-          <FlexDisplay>
-          <FlagImage  ></FlagImage>
-
-          
+    fetchCountries(countryName).then((data)=>{
+      setCountry(data[0]);
+    })
+  }, []);
     
-           <CountryDetailsCard
-           // commonName= {country[0]['name']['common']}
-            //topLevelDomain = {country[0].cca2}
-           // population = {country[0].population}
-           //  currencies = {country[0].currencies[0]}
-           //   region = {country[0].region}
-           // languages = {country[0].languages}
-           //  subRegion = {country[0].subRegion}
-           //   captial = {country[0].capital}
-              variant="outlined"></CountryDetailsCard>
-           
-            
+  if (country === undefined) {
+    return <>Still loading...</>;
+  }
+
+  else{
+    return(
+      <DetailsWrapper>
+      <FlexDisplay>
+      <FlagImage src={country.flags.svg} ></FlagImage>
+
+      
+
+       <CountryDetailsCard
+        commonName= {country.name.common}
+        topLevelDomain = {country.cca2}
+        population = {country.population}
+        currencies = {country.currencies[0]}
+        region = {country.region}
+        //languages = {country.languages}
+        subRegion = {country.subregion}
+        captial = {country.capital}
+          variant="outlined"></CountryDetailsCard>
+       
+        
+
+        </FlexDisplay>
+        </DetailsWrapper>
+    );
   
-            </FlexDisplay>
-            </DetailsWrapper>
-        );
+    }
+
+
+
+   
 }

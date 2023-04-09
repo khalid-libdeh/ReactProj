@@ -5,6 +5,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import styled from 'styled-components';
+import { useEffect } from 'react';
+
 
 const FilterStyle = styled.div`
   border: 0;
@@ -13,12 +15,14 @@ const FilterStyle = styled.div`
 `;
 
 export default function FilterMenu({onFilterChange}) {
-  const [filter, setFilter] = React.useState('');
+
+
 
   const handleChange = (event) => {
-    setFilter(event.target.value);
     onFilterChange(event.target.value); 
+
   };
+
 
   return (
     <FilterStyle>
@@ -28,8 +32,8 @@ export default function FilterMenu({onFilterChange}) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={filter}
-          label="Filter"
+       
+          label="Filter By"
           onChange={handleChange}
         >
           <MenuItem value={'No filter'}>No Filter</MenuItem>

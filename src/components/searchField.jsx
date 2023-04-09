@@ -13,8 +13,8 @@ const SearchBox = styled(Box)`
     box-shadow: 0 0 5px 1px #DCDCDC;
     text-align: center;
     width: 30rem;
-    padding-bottom: 0.5rem;
-    min-height: 1.8rem;
+    
+
 `;
 
 const SearchIconComp = styled(SearchIcon)`
@@ -26,23 +26,26 @@ const SearchIconComp = styled(SearchIcon)`
 const SearchArea = styled(TextField)`
     margin: auto;
     min-width: 5rem;
-    border: 0;
-
+    border: 0 !important;
+    height: 100%;
 `;
+let debounceTimeout;
 
+export default function SearchField({ sendQueryToMain }) {
 
-export default function SearchField({ onQuery }) {
-    
-    const handleInput = event => {
-        onQuery(event.target.value); 
-         
-      };
+    const handleInput = (event) => {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(()=>{
+            sendQueryToMain(event.target.value)
+        }, 300)
+        
+    }
 
 
     return (
         <SearchBox sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <SearchIconComp />
-            <SearchArea  type="text" onInput={handleInput} fullWidth variant='standard' margin="normal" id="input-with-sx" placeholder="Search for a country..." />
+            <SearchArea variant="standard" InputProps={{ disableUnderline: true }} type="text" onInput={handleInput} fullWidth margin="normal" id="input-with-sx" placeholder="Search for a country..." />
         </SearchBox>
     );
-  }
+}
